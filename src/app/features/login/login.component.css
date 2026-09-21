@@ -1,0 +1,162 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.login-page {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.85fr);
+  background: #f9fafc;
+}
+
+.brand-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 8vw, 8rem);
+  color: #fff;
+  background: linear-gradient(145deg, #16324f 0%, #1c6e71 62%, #77b86b 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-panel::after {
+  content: '';
+  position: absolute;
+  width: 32rem;
+  height: 32rem;
+  right: -14rem;
+  bottom: -14rem;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4rem rgb(255 255 255 / 4%), 0 0 0 8rem rgb(255 255 255 / 4%);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 4rem;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #e3bf71;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+h1 {
+  max-width: 35rem;
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.03;
+}
+
+.brand-copy {
+  max-width: 28rem;
+  margin: 2rem 0 0;
+  color: rgb(255 255 255 / 78%);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.brand-note {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  margin-top: 5rem;
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.85rem;
+}
+
+.form-panel {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: #f9fafc;
+}
+
+.login-form {
+  width: min(100%, 26rem);
+}
+
+.form-heading {
+  margin-bottom: 2.25rem;
+}
+
+.form-heading h2 {
+  margin: 0 0 0.65rem;
+  color: #172033;
+  font-family: Georgia, serif;
+  font-size: 2.15rem;
+  font-weight: 400;
+}
+
+.form-heading p:last-child {
+  margin: 0;
+  color: #6c7687;
+  line-height: 1.5;
+}
+
+form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+label {
+  margin-top: 0.8rem;
+  color: #344054;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 1.1rem;
+}
+
+.fine-print {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2rem;
+  color: #8992a2;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 800px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-panel {
+    min-height: 23rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .brand-mark {
+    margin-bottom: 2rem;
+  }
+
+  .brand-note {
+    margin-top: 2rem;
+  }
+
+  .form-panel {
+    padding: 3.5rem 1.5rem;
+  }
+}

@@ -1,0 +1,30 @@
+<div class="dashboard-shell">
+  <header class="topbar">
+    <a class="wordmark" routerLink="/dashboard"><span class="wordmark-icon"><i class="pi pi-shopping-bag"></i></span>northstar</a>
+    <div class="topbar-actions">
+      <button pButton text rounded icon="pi pi-bell" aria-label="Notifications"></button>
+      <span class="topbar-divider"></span>
+      <p-avatar label="JD" shape="circle" styleClass="user-avatar" />
+      <div class="user-info"><strong>Jordan Davis</strong><span>Operations</span></div>
+    </div>
+  </header>
+
+  <div class="dashboard-body">
+    <aside class="sidebar">
+      <div class="sidebar-intro"><span class="eyebrow">WORKSPACE</span><h1>Command center</h1></div>
+      <nav aria-label="Application modules">
+        <span class="nav-label">MODULES</span>
+        @for (module of modules; track module.route) {
+          <a class="module-link" [routerLink]="module.route" routerLinkActive="active">
+            <i [class]="module.icon"></i><span>{{ module.label }}</span><i class="pi pi-arrow-up-right link-arrow"></i>
+          </a>
+        }
+      </nav>
+      <div class="sidebar-bottom"><div class="help-box"><i class="pi pi-question-circle"></i><div><strong>Need a hand?</strong><span>Visit the help center</span></div><i class="pi pi-arrow-up-right"></i></div></div>
+    </aside>
+
+    <main class="content"><router-outlet /></main>
+  </div>
+
+  <footer class="footer"><span>© 2026 Northstar Commerce</span><span>Built for better buying</span></footer>
+</div>

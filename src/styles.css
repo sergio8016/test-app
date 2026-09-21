@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+:root {
+	font-family: 'DM Sans', sans-serif;
+	color: #172033;
+	background: #f6f8fb;
+}
+
+html,
+body {
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	min-width: 320px;
+}

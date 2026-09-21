@@ -1,0 +1,31 @@
+<main class="login-page">
+  <section class="brand-panel">
+    <div class="brand-mark"><i class="pi pi-shopping-bag"></i></div>
+    <p class="eyebrow">NORTHSTAR COMMERCE</p>
+    <h1>Everything your team needs, in one place.</h1>
+    <p class="brand-copy">A calmer way to manage your everyday purchasing, from first search to final delivery.</p>
+    <div class="brand-note"><i class="pi pi-sparkles"></i><span>Simple tools. Thoughtful details.</span></div>
+  </section>
+
+  <section class="form-panel">
+    <div class="login-form">
+      <div class="form-heading">
+        <p class="eyebrow">WELCOME BACK</p>
+        <h2>Sign in to your workspace</h2>
+        <p>Enter any details to continue to your dashboard.</p>
+      </div>
+
+      <form (ngSubmit)="login()">
+        <label for="email">Email address</label>
+        <input pInputText id="email" name="email" type="email" [(ngModel)]="email" placeholder="you@company.com" />
+
+        <label for="password">Password</label>
+        <input pInputText id="password" name="password" type="password" [(ngModel)]="password" placeholder="••••••••" />
+
+        <p-button type="submit" label="Continue to dashboard" icon="pi pi-arrow-right" iconPos="right" styleClass="login-button" />
+      </form>
+
+      <p class="fine-print"><i class="pi pi-lock"></i> Your workspace is private and secure.</p>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,50 @@
+<section class="buy-items-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">PROCUREMENT / 01</p>
+      <h1>Buy Items</h1>
+      <p class="intro">Search across your trusted suppliers and find the right item for the job.</p>
+    </div>
+    <div class="heading-meta"><span class="item-count">{{ products.length }} results</span><span class="provider-count">{{ selectedProviders.length || 'All' }} providers</span></div>
+  </div>
+
+  <div class="search-panel">
+    <div class="search-field"><i class="pi pi-search"></i><input type="search" [(ngModel)]="query" (ngModelChange)="search()" placeholder="Search for products, tools, materials..." aria-label="Search for products" /></div>
+    <button pButton label="Search" icon="pi pi-arrow-right" iconPos="right" (click)="search()"></button>
+  </div>
+
+  <div class="provider-toolbar">
+    <span class="filter-label">SEARCH PROVIDERS</span>
+    <div class="provider-filters">
+      @for (provider of providers; track provider.id) {
+        <button class="provider-filter" [class.selected]="selectedProviders.includes(provider.id)" (click)="toggleProvider(provider.id)">
+          <i [class]="provider.icon"></i><span>{{ provider.label }}</span><i class="pi" [class.pi-check]="selectedProviders.includes(provider.id)" [class.pi-plus]="!selectedProviders.includes(provider.id)"></i>
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="loading-state"><p-progress-spinner strokeWidth="3" ariaLabel="Loading products" /><p>Searching connected providers...</p></div>
+  } @else if (products.length) {
+    <div class="item-grid">
+    @for (product of products; track product.id) {
+      <p-card styleClass="item-card" [class.lowest-price-card]="isLowestPrice(product)">
+        <div class="item-visual" [style.background]="product.accent"><i [class]="product.icon"></i><span>{{ product.providerLabel }}</span></div>
+        <div class="item-details">
+          <div class="item-heading"><div class="category-line"><p class="category">{{ product.category }}</p>@if (isLowestPrice(product)) { <p-tag value="LOWEST PRICE" severity="success" /> }</div><p-tag [value]="product.condition" [severity]="product.condition === 'New' ? 'success' : 'warn'" /></div>
+          <h2>{{ product.title }}</h2><p class="description">{{ product.description }}</p>
+          <div class="rating"><i class="pi pi-star-fill"></i> {{ product.rating }} <span>({{ product.reviewCount | number }})</span></div>
+          <div class="product-meta"><span><i class="pi pi-check-circle"></i> {{ product.availability }}</span><span><i class="pi pi-truck"></i> {{ product.shipping }}</span></div>
+          <div class="item-footer"><div><strong>{{ product.price | currency: product.currency }}</strong><small>SKU {{ product.sku }}</small></div><p-button icon="pi pi-plus" [rounded]="true" [text]="true" ariaLabel="Add item to request list" (onClick)="addItem(product)" /></div>
+        </div>
+      </p-card>
+    }
+    </div>
+  } @else {
+    <div class="empty-state"><i class="pi pi-search"></i><h2>No products found</h2><p>Try a broader search or select another provider.</p><button pButton text label="Clear search" icon="pi pi-refresh" (click)="query = ''; search()"></button></div>
+  }
+  @if (addedItem) {
+    <div class="added-notice"><i class="pi pi-check-circle"></i> {{ addedItem }} added to your request list.</div>
+  }
+</section>
