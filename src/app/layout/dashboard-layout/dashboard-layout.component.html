@@ -2,10 +2,11 @@
   <header class="topbar">
     <a class="wordmark" routerLink="/dashboard"><span class="wordmark-icon"><i class="pi pi-shopping-bag"></i></span>northstar</a>
     <div class="topbar-actions">
-      <button pButton text rounded icon="pi pi-bell" aria-label="Notifications"></button>
+      <p-button text rounded icon="pi pi-bell" ariaLabel="Notifications" />
       <span class="topbar-divider"></span>
-      <p-avatar label="JD" shape="circle" styleClass="user-avatar" />
-      <div class="user-info"><strong>Jordan Davis</strong><span>Operations</span></div>
+      <p-avatar [label]="auth.role === 'admin' ? 'AD' : 'WK'" shape="circle" styleClass="user-avatar" />
+      <div class="user-info"><strong>{{ auth.username }}</strong><span>{{ auth.role }}</span></div>
+      <p-button text rounded icon="pi pi-sign-out" ariaLabel="Sign out" (onClick)="auth.logout()" />
     </div>
   </header>
 
@@ -13,7 +14,7 @@
     <aside class="sidebar">
       <div class="sidebar-intro"><span class="eyebrow">WORKSPACE</span><h1>Command center</h1></div>
       <nav aria-label="Application modules">
-        <span class="nav-label">MODULES</span>
+        <span class="nav-label">{{ modules.length ? 'MODULES' : 'NO MODULES' }}</span>
         @for (module of modules; track module.route) {
           <a class="module-link" [routerLink]="module.route" routerLinkActive="active">
             <i [class]="module.icon"></i><span>{{ module.label }}</span><i class="pi pi-arrow-up-right link-arrow"></i>

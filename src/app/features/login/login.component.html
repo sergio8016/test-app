@@ -12,18 +12,22 @@
       <div class="form-heading">
         <p class="eyebrow">WELCOME BACK</p>
         <h2>Sign in to your workspace</h2>
-        <p>Enter any details to continue to your dashboard.</p>
+        <p>Use your assigned username to continue.</p>
       </div>
 
       <form (ngSubmit)="login()">
-        <label for="email">Email address</label>
-        <input pInputText id="email" name="email" type="email" [(ngModel)]="email" placeholder="you@company.com" />
+        <label for="username">Username</label>
+        <input pInputText id="username" name="username" type="text" [(ngModel)]="username" placeholder="admin or worker" />
 
         <label for="password">Password</label>
         <input pInputText id="password" name="password" type="password" [(ngModel)]="password" placeholder="••••••••" />
 
         <p-button type="submit" label="Continue to dashboard" icon="pi pi-arrow-right" iconPos="right" styleClass="login-button" />
       </form>
+
+      @if (loginError) {
+        <p class="login-error"><i class="pi pi-exclamation-circle"></i> Use <strong>admin</strong> or <strong>worker</strong> as the username.</p>
+      }
 
       <p class="fine-print"><i class="pi pi-lock"></i> Your workspace is private and secure.</p>
     </div>

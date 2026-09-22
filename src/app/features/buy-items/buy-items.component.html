@@ -10,7 +10,7 @@
 
   <div class="search-panel">
     <div class="search-field"><i class="pi pi-search"></i><input type="search" [(ngModel)]="query" (ngModelChange)="search()" placeholder="Search for products, tools, materials..." aria-label="Search for products" /></div>
-    <button pButton label="Search" icon="pi pi-arrow-right" iconPos="right" (click)="search()"></button>
+    <p-button label="Search" icon="pi pi-arrow-right" iconPos="right" (onClick)="search()" />
   </div>
 
   <div class="provider-toolbar">
@@ -42,7 +42,7 @@
     }
     </div>
   } @else {
-    <div class="empty-state"><i class="pi pi-search"></i><h2>No products found</h2><p>Try a broader search or select another provider.</p><button pButton text label="Clear search" icon="pi pi-refresh" (click)="query = ''; search()"></button></div>
+    <div class="empty-state"><i class="pi pi-search"></i><h2>No products found</h2><p>Try a broader search or select another provider.</p><p-button text label="Clear search" icon="pi pi-refresh" (onClick)="query = ''; search()" /></div>
   }
   @if (addedItem) {
     <div class="added-notice"><i class="pi pi-check-circle"></i> {{ addedItem }} added to your request list.</div>

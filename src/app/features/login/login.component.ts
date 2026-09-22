@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,16 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  protected email = '';
+  protected username = '';
   protected password = '';
+  protected loginError = false;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private readonly auth: AuthService) {}
 
   protected login(): void {
-    void this.router.navigate(['/dashboard']);
+    this.loginError = !this.auth.login(this.username);
+    if (!this.loginError) {
+      void this.router.navigate(['/dashboard']);
+    }
   }
 }

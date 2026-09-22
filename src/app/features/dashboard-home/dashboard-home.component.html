@@ -1,0 +1,10 @@
+<section class="dashboard-home">
+  <p class="eyebrow">BUILD FLOW / {{ auth.role | uppercase }}</p>
+  <h1>Welcome back, {{ auth.username }}.</h1>
+  <p class="intro">Your workspace is ready. Choose an available module from the sidebar to get started.</p>
+  @if (auth.role === 'worker') {
+    <div class="permission-note"><i class="pi pi-lock"></i><div><strong>Worker access</strong><span>Buy Items is available to administrators only.</span></div></div>
+  } @else {
+    <div class="permission-note admin"><i class="pi pi-check-circle"></i><div><strong>Administrator access</strong><span>You can search providers and manage purchase requests.</span></div></div>
+  }
+</section>

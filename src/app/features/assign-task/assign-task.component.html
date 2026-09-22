@@ -1,0 +1,20 @@
+<section class="assign-page">
+  <div class="page-heading"><div><p class="eyebrow">TEAM / ADMIN</p><h1>Assign Task</h1><p class="intro">Create a buying list and send it directly to a worker.</p></div><div class="task-badge"><i class="pi pi-send"></i> BUY TASK</div></div>
+
+  <div class="assign-grid">
+    <div class="builder-panel">
+      <div class="section-heading"><span class="step">01</span><div><h2>Choose a worker</h2><p>Who should receive this task?</p></div></div>
+      <label class="worker-option selected"><input type="radio" name="worker" checked /><span class="avatar">WK</span><span><strong>worker</strong><small>Available for assignments</small></span><i class="pi pi-check-circle"></i></label>
+
+      <div class="section-heading items-heading"><span class="step">02</span><div><h2>Add items to buy</h2><p>Select from common materials or add your own.</p></div></div>
+      <div class="suggested-items">
+        @for (item of suggestedItems; track item) {
+          <button class="item-choice" [class.selected]="selectedItems.includes(item)" (click)="toggleItem(item)"><i class="pi" [class.pi-check]="selectedItems.includes(item)" [class.pi-plus]="!selectedItems.includes(item)"></i>{{ item }}</button>
+        }
+      </div>
+      <div class="custom-item"><input pInputText [(ngModel)]="customItem" (keyup.enter)="addCustomItem()" placeholder="Add another object..." aria-label="Add another object" /><p-button text icon="pi pi-plus" label="Add" (onClick)="addCustomItem()" /></div>
+    </div>
+
+    <aside class="task-preview"><div class="preview-top"><span class="eyebrow">TASK PREVIEW</span><i class="pi pi-list-check"></i></div><h2>Buy list for worker</h2><p class="preview-copy">The worker will see these items as a checklist.</p><div class="selected-list">@if (selectedItems.length) { @for (item of selectedItems; track item) { <div class="selected-item"><i class="pi pi-circle"></i><span>{{ item }}</span><button class="remove-item" aria-label="Remove item" (click)="removeItem(item)"><i class="pi pi-times"></i></button></div> } } @else { <div class="empty-preview"><i class="pi pi-inbox"></i><span>Your list is empty</span></div> }</div><p-button label="Assign task to worker" icon="pi pi-send" [disabled]="!selectedItems.length" (onClick)="assignTask()" />@if (assigned) { <p class="success-message"><i class="pi pi-check-circle"></i> Task assigned successfully.</p> }</aside>
+  </div>
+</section>

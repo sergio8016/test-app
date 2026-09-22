@@ -138,6 +138,8 @@ input {
   font-size: 0.75rem;
 }
 
+.login-error { display: flex; gap: 0.4rem; align-items: center; margin: 1rem 0 0; color: #b54747; font-size: 0.78rem; }
+
 @media (max-width: 800px) {
   .login-page {
     grid-template-columns: 1fr;

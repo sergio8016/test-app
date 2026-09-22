@@ -1,0 +1,13 @@
+<section class="tasks-page">
+  <div class="page-heading"><div><p class="eyebrow">WORKSPACE / WORKER</p><h1>Tasks</h1><p class="intro">Your assigned work, all in one place.</p></div><div class="task-count"><i class="pi pi-list-check"></i> {{ tasks.length }} assigned</div></div>
+
+  @if (tasks.length) {
+    <div class="task-list">
+      @for (task of tasks; track task.id) {
+        <article class="task-card"><div class="task-card-heading"><div><span class="task-type"><i class="pi pi-shopping-cart"></i> BUY</span><h2>{{ task.title }}</h2><p>Assigned by {{ task.assignedBy }} · {{ task.createdAt | date:'MMM d, y' }}</p></div><p-tag [value]="completedCount(task) === task.items.length ? 'Complete' : 'In progress'" [severity]="completedCount(task) === task.items.length ? 'success' : 'warn'" /></div>@if (task.completedAt) { <div class="completed-message"><i class="pi pi-check-circle"></i><div><strong>Task completed</strong><span>All assigned objects have been acquired.</span></div></div> }<div class="progress-line"><span [style.width.%]="(completedCount(task) / task.items.length) * 100"></span></div><p class="progress-label">{{ completedCount(task) }} of {{ task.items.length }} items checked</p><div class="checklist">@for (item of task.items; track item.id) { <label class="check-item" [class.completed]="item.completed"><input type="checkbox" [checked]="item.completed" (change)="toggleItem(task.id, item.id)" /><span class="custom-check"><i class="pi pi-check"></i></span><span class="item-name">{{ item.name }}</span><span class="quantity">Qty {{ item.quantity }}</span></label> }</div></article>
+      }
+    </div>
+  } @else {
+    <div class="empty-state"><i class="pi pi-inbox"></i><h2>No tasks yet</h2><p>Tasks assigned by an administrator will appear here.</p></div>
+  }
+</section>
