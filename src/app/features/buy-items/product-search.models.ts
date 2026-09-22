@@ -7,6 +7,7 @@ export interface ProductResult {
   category: string;
   provider: ProviderId;
   providerLabel: string;
+  productUrl: string;
   price: number;
   currency: string;
   rating: number;

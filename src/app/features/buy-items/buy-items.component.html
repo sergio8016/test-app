@@ -3,7 +3,7 @@
     <div>
       <p class="eyebrow">PROCUREMENT / 01</p>
       <h1>Buy Items</h1>
-      <p class="intro">Search across your trusted suppliers and find the right item for the job.</p>
+      <p class="intro">Compare trusted supplier listings, then continue to the provider to complete your purchase.</p>
     </div>
     <div class="heading-meta"><span class="item-count">{{ products.length }} results</span><span class="provider-count">{{ selectedProviders.length || 'All' }} providers</span></div>
   </div>
@@ -36,15 +36,12 @@
           <h2>{{ product.title }}</h2><p class="description">{{ product.description }}</p>
           <div class="rating"><i class="pi pi-star-fill"></i> {{ product.rating }} <span>({{ product.reviewCount | number }})</span></div>
           <div class="product-meta"><span><i class="pi pi-check-circle"></i> {{ product.availability }}</span><span><i class="pi pi-truck"></i> {{ product.shipping }}</span></div>
-          <div class="item-footer"><div><strong>{{ product.price | currency: product.currency }}</strong><small>SKU {{ product.sku }}</small></div><p-button icon="pi pi-plus" [rounded]="true" [text]="true" ariaLabel="Add item to request list" (onClick)="addItem(product)" /></div>
+          <div class="item-footer"><div><strong>{{ product.price | currency: product.currency }}</strong><small>SKU {{ product.sku }}</small></div><a class="provider-link" [href]="product.productUrl" target="_blank" rel="noopener noreferrer">View on {{ product.providerLabel }} <i class="pi pi-external-link"></i></a></div>
         </div>
       </p-card>
     }
     </div>
   } @else {
     <div class="empty-state"><i class="pi pi-search"></i><h2>No products found</h2><p>Try a broader search or select another provider.</p><p-button text label="Clear search" icon="pi pi-refresh" (onClick)="query = ''; search()" /></div>
-  }
-  @if (addedItem) {
-    <div class="added-notice"><i class="pi pi-check-circle"></i> {{ addedItem }} added to your request list.</div>
   }
 </section>

@@ -21,7 +21,7 @@ Any password value is accepted in the demo.
 
 ## What You Can Explore
 
-- **Buy Items:** Search a construction catalog with mock supplier results from Amazon, eBay, and BuildHub Supply.
+- **Buy Items:** Search a construction catalog with mock supplier results from Amazon, eBay, and BuildHub Supply, then open the provider listing to complete the purchase externally.
 - **Lowest-price comparison:** Results are sorted from lowest to highest price, with the best price highlighted.
 - **Assign Task:** Administrators can create a buying task and assign a list of construction objects to a worker.
 - **Tasks:** Workers receive assigned buying tasks as checklists and can mark each item as acquired.
@@ -64,7 +64,7 @@ The compiled application is written to `dist/`.
 
 ## Current Scope
 
-The supplier catalog and authentication are mock implementations designed to demonstrate the product workflow. Tasks are persisted in browser `localStorage`, making it possible to assign work as `admin` and review it as `worker` in the same browser.
+The supplier catalog and authentication are mock implementations designed to demonstrate the product workflow. Build Flow does not process purchases internally: Buy Items compares provider listings and sends the user to the provider website through an external link. Tasks are persisted in browser `localStorage`, making it possible to assign work as `admin` and review it as `worker` in the same browser.
 
 The next integration step would be replacing the mock search service with real supplier adapters and connecting task persistence to a backend API.
 

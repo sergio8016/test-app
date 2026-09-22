@@ -3,6 +3,13 @@ import { ProductResult, ProviderId } from './product-search.models';
 const providers: ProviderId[] = ['amazon', 'ebay', 'buildhub'];
 const providerLabels: Record<ProviderId, string> = { amazon: 'Amazon', ebay: 'eBay', buildhub: 'BuildHub Supply' };
 
+const providerUrlFor = (provider: ProviderId, objectName: string, variant: number): string => {
+  const query = encodeURIComponent(`${objectName} construction option ${variant}`);
+  if (provider === 'amazon') return `https://www.amazon.com/s?k=${query}`;
+  if (provider === 'ebay') return `https://www.ebay.com/sch/i.html?_nkw=${query}`;
+  return `https://buildhub.example.com/products/${objectName.toLowerCase().replaceAll(' ', '-')}-${variant}`;
+};
+
 // Five offers are generated for every object so provider integrations can replace this file later.
 const constructionObjects = [
   'Cement', 'Concrete', 'Mortar', 'Bricks', 'Blocks', 'Sand', 'Gravel', 'Stone', 'Clay', 'Steel', 'Rebar', 'Wood', 'Timber', 'Plywood', 'Drywall', 'Gypsum board', 'Glass', 'Aluminum', 'Copper', 'PVC', 'Insulation', 'Roofing shingles', 'Tiles', 'Asphalt', 'Plaster', 'Paint',
@@ -39,6 +46,7 @@ export const MOCK_PRODUCTS: ProductResult[] = constructionObjects.flatMap((objec
     category: 'Construction',
     provider,
     providerLabel: providerLabels[provider],
+    productUrl: providerUrlFor(provider, objectName, variant),
     price,
     currency: 'USD',
     rating: Number((4.2 + variantIndex * 0.15).toFixed(1)),

@@ -26,7 +26,6 @@ export class BuyItemsComponent {
   protected query = '';
   protected selectedProviders: ProviderId[] = [];
   protected isLoading = false;
-  protected addedItem = '';
   protected lowestPrice: number | null = null;
 
   private readonly searchInput$ = new Subject<string>();
@@ -58,10 +57,6 @@ export class BuyItemsComponent {
       ? this.selectedProviders.filter((selected) => selected !== provider)
       : [...this.selectedProviders, provider];
     this.search();
-  }
-
-  protected addItem(product: ProductResult): void {
-    this.addedItem = product.title;
   }
 
   protected isLowestPrice(product: ProductResult): boolean {
